@@ -1,60 +1,64 @@
-# CropfreshWeb
+# Git Workflow Guide for CropFresh
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.13.
+## Branching Strategy:
 
-## Development server
+* `main`: Production-ready code. Only merges from develop branch allowed.
+* `develop`: Main integration branch for ongoing development.
+* `feature/*`: For new features (e.g., feature/user-authentication)
+* `bugfix/*`: For bug fixes (e.g., bugfix/login-error)
+* `hotfix/*`: For critical production fixes (e.g., hotfix/security-vulnerability)
 
-To start a local development server, run:
+## Commit Message Format:
 
-```bash
-ng serve
-```
+We follow the Conventional Commits format:
+`type(scope): description`
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Types:
+* feat: A new feature
+* fix: A bug fix
+* refactor: Code refactoring
+* style: Formatting changes
+* docs: Documentation changes
+* test: Test-related changes
+* chore: Other changes
 
-## Code scaffolding
+Example:
+* feat(auth): implement user login
+* fix(ui): correct button alignment
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Branch Workflow:
 
-```bash
-ng generate component component-name
-```
+1. Create branch from develop:
+   ```bash
+   git checkout develop
+   git checkout -b feature/your-feature
+   ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+2. Make changes and commit:
+   ```bash
+   git add .
+   git commit -m "feat(scope): description"
+   ```
 
-```bash
-ng generate --help
-```
+3. Push changes:
+   ```bash
+   git push origin feature/your-feature
+   ```
 
-## Building
+4. Create Pull Request to develop branch
 
-To build the project run:
+## Pull Request Process:
 
-```bash
-ng build
-```
+1. Create PR from your branch to develop
+2. Fill out the PR template
+3. Request reviews from team members
+4. Address review comments
+5. Merge after approval
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Important Notes:
 
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
-# web
+* Always branch from develop for new features
+* Keep PRs focused and small
+* Write clear commit messages
+* Update documentation when needed
+* Ensure tests pass before requesting review
