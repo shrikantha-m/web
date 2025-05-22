@@ -1,1 +1,46 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-sans text-gray-800 bg-white overflow-x-hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-semibold;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+
+  .btn-primary {
+    @apply bg-cropGreen-500 text-white hover:bg-cropGreen-600 focus:ring-cropGreen-500;
+  }
+
+  .btn-secondary {
+    @apply bg-cropOrange-500 text-white hover:bg-cropOrange-600 focus:ring-cropOrange-500;
+  }
+
+  .btn-outline {
+    @apply border-2 border-cropGreen-500 text-cropGreen-500 hover:bg-cropGreen-50 focus:ring-cropGreen-500;
+  }
+
+  .glass-card {
+    @apply bg-white bg-opacity-20 shadow-glass backdrop-filter backdrop-blur-glass border border-white border-opacity-20 rounded-xl;
+  }
+
+  .container {
+    @apply px-4 mx-auto;
+  }
+}
