@@ -48,6 +48,8 @@ module.exports = {
         'bounce-slow': 'bounce 2s infinite',
         'kenburns': 'kenburns 20s ease-in-out infinite',
         'shine': 'shine 1.5s forwards',
+        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'fadeIn': 'fadeIn 0.5s ease-out forwards',
       },
       keyframes: {
         float: {
@@ -60,7 +62,12 @@ module.exports = {
           '100%': { transform: 'scale(1)' },
         },
         shine: {
-          '100%': { left: '125%' },
+          '0%': { left: '-100%' },
+          '100%': { left: '100%' },
+        },
+        fadeIn: {
+          '0%': { opacity: '0', transform: 'translateY(-10px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
         },
       },
     },
