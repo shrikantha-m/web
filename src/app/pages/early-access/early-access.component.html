@@ -1,0 +1,156 @@
+<section class="py-20 bg-gradient-to-b from-white to-gray-50">
+  <div class="container mx-auto px-4 pt-16">
+    <!-- Success Message After Submission -->
+    <div *ngIf="submitted" class="max-w-3xl mx-auto bg-white rounded-2xl shadow-xl p-8 animate-fadeIn">
+      <div class="text-center">
+        <div class="w-20 h-20 bg-cropGreen-100 rounded-full flex items-center justify-center mx-auto mb-6">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-cropGreen-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+        <h2 class="text-3xl font-bold text-gray-800 mb-4">Thank You for Your Interest!</h2>
+        <p class="text-lg text-gray-600 mb-8">
+          We've received your early access request. We're excited to have you join the Cropfresh community! 
+          Our team will review your application and get back to you shortly with next steps.
+        </p>
+        <div class="flex justify-center gap-4">
+          <a routerLink="/" class="px-6 py-3 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded-lg transition-all">
+            Return Home
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Early Access Form -->
+    <div *ngIf="!submitted" class="max-w-4xl mx-auto">
+      <div class="text-center mb-12">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-cropGreen-500 to-cropOrange-500 bg-clip-text text-transparent">
+          Get Early Access
+        </h1>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+          Join our exclusive early access program and be among the first to experience the future of agricultural commerce.
+        </p>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-xl p-8 md:p-10">
+        <form (ngSubmit)="onSubmit()" #earlyAccessForm="ngForm" class="space-y-6">
+          <!-- Personal Information -->
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="space-y-2">
+              <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
+              <input 
+                type="text" 
+                id="name" 
+                name="name"
+                [(ngModel)]="formData.name"
+                required
+                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-cropGreen-500 focus:border-transparent transition-all"
+                placeholder="Your full name"
+              >
+            </div>
+            <div class="space-y-2">
+              <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
+              <input 
+                type="email" 
+                id="email" 
+                name="email"
+                [(ngModel)]="formData.email"
+                required
+                email
+                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-cropGreen-500 focus:border-transparent transition-all"
+                placeholder="your.email@example.com"
+              >
+            </div>
+          </div>
+
+          <!-- Organization Information -->
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="space-y-2">
+              <label for="organization" class="block text-sm font-medium text-gray-700">Organization/Farm Name</label>
+              <input 
+                type="text" 
+                id="organization" 
+                name="organization"
+                [(ngModel)]="formData.organization"
+                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-cropGreen-500 focus:border-transparent transition-all"
+                placeholder="Your organization or farm name"
+              >
+            </div>
+            <div class="space-y-2">
+              <label for="role" class="block text-sm font-medium text-gray-700">Your Role</label>
+              <select 
+                id="role" 
+                name="role"
+                [(ngModel)]="formData.role"
+                required
+                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-cropGreen-500 focus:border-transparent transition-all"
+              >
+                <option value="" disabled selected>Select your role</option>
+                <option value="farmer">Farmer</option>
+                <option value="distributor">Distributor</option>
+                <option value="retailer">Retailer</option>
+                <option value="processor">Processor</option>
+                <option value="investor">Investor</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Interests -->
+          <div class="space-y-3">
+            <label class="block text-sm font-medium text-gray-700">I'm interested in (select all that apply)</label>
+            <div class="grid md:grid-cols-2 gap-3">
+              <div *ngFor="let option of interestOptions" 
+                   class="flex items-center p-3 rounded-lg border cursor-pointer transition-all"
+                   [ngClass]="{
+                     'border-cropGreen-500 bg-cropGreen-50': isInterestSelected(option.id),
+                     'border-gray-200 hover:border-cropGreen-300': !isInterestSelected(option.id)
+                   }"
+                   (click)="toggleInterest(option.id)">
+                <div class="w-5 h-5 rounded-md border mr-3 flex items-center justify-center"
+                     [ngClass]="{
+                       'bg-cropGreen-500 border-cropGreen-500': isInterestSelected(option.id),
+                       'border-gray-300': !isInterestSelected(option.id)
+                     }">
+                  <svg *ngIf="isInterestSelected(option.id)" xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <span>{{ option.label }}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Error Message -->
+          <div *ngIf="errorMessage" class="p-3 bg-red-100 text-red-700 rounded-lg">
+            {{ errorMessage }}
+          </div>
+
+          <!-- Submit Button -->
+          <div class="pt-4">
+            <button 
+              type="submit" 
+              [disabled]="earlyAccessForm.invalid || submitting"
+              class="w-full py-4 px-6 bg-gradient-to-r from-cropGreen-500 to-cropOrange-500 hover:from-cropGreen-600 hover:to-cropOrange-600 text-white rounded-lg font-medium transition-all shadow-lg hover:shadow-cropGreen-500/30 relative overflow-hidden"
+              [ngClass]="{'opacity-70 cursor-not-allowed': earlyAccessForm.invalid || submitting}"
+            >
+              <span *ngIf="!submitting">Request Early Access</span>
+              <span *ngIf="submitting" class="flex items-center justify-center">
+                <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Processing...
+              </span>
+              <div class="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-20 group-hover:animate-shine"></div>
+            </button>
+          </div>
+
+          <p class="text-center text-sm text-gray-500 mt-4">
+            By submitting this form, you agree to our <a href="#" class="text-cropGreen-500 hover:underline">Terms of Service</a> and <a href="#" class="text-cropGreen-500 hover:underline">Privacy Policy</a>.
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

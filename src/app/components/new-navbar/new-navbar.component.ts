@@ -1,10 +1,11 @@
 import { Component, HostListener, Inject, PLATFORM_ID } from '@angular/core';
 import { NgIf, NgClass, isPlatformBrowser } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-new-navbar',
   standalone: true,
-  imports: [NgIf, NgClass],
+  imports: [NgIf, NgClass, RouterLink],
   template: `
     <header class="fixed top-0 left-0 w-full z-50 transition-all duration-500"
             [ngClass]="{'bg-white/40 backdrop-blur-xl shadow-lg border-b border-white/20': scrolled,
@@ -52,12 +53,12 @@ import { NgIf, NgClass, isPlatformBrowser } from '@angular/common';
 
           <!-- CTA Button -->
           <div class="hidden md:block">
-            <button class="relative overflow-hidden bg-gradient-to-r from-cropGreen-500 to-cropOrange-500
+            <a routerLink="/early-access" class="relative overflow-hidden bg-gradient-to-r from-cropGreen-500 to-cropOrange-500
                           hover:from-cropGreen-600 hover:to-cropOrange-600 text-white px-6 py-2.5 rounded-full
-                          transition-all shadow-lg hover:shadow-cropGreen-500/40 font-medium hover:translate-y-[-2px]">
+                          transition-all shadow-lg hover:shadow-cropGreen-500/40 font-medium hover:translate-y-[-2px] inline-block">
               <span class="relative z-10">Early Access</span>
               <div class="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-20 group-hover:animate-shine"></div>
-            </button>
+            </a>
           </div>
 
           <!-- Mobile Menu Button -->
@@ -95,12 +96,12 @@ import { NgIf, NgClass, isPlatformBrowser } from '@angular/common';
             <span class="w-1.5 h-1.5 rounded-full bg-cropGreen-500 mr-2"></span>
             Testimonials
           </a>
-          <button class="relative overflow-hidden bg-gradient-to-r from-cropGreen-500 to-cropOrange-500
+          <a routerLink="/early-access" class="relative overflow-hidden bg-gradient-to-r from-cropGreen-500 to-cropOrange-500
                         hover:from-cropGreen-600 hover:to-cropOrange-600 text-white px-4 py-3 rounded-lg
-                        transition-all shadow-lg w-full font-medium mt-2 hover:shadow-cropGreen-500/30">
+                        transition-all shadow-lg w-full font-medium mt-2 hover:shadow-cropGreen-500/30 inline-block text-center">
             <span class="relative z-10">Early Access</span>
             <div class="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-20 animate-shine"></div>
-          </button>
+          </a>
         </div>
       </div>
     </header>
