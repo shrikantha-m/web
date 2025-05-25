@@ -14,17 +14,10 @@ import { RouterLink } from '@angular/router';
         <nav class="flex items-center justify-between py-4">
           <!-- Logo -->
           <a href="#" class="flex items-center gap-2 relative group">
-            <!-- Logo with 3D effect -->
-            <div class="relative transition-all duration-300 group-hover:scale-110">
-              <div class="w-10 h-10 rounded-full bg-gradient-to-r from-cropGreen-500 to-cropOrange-500
-                          shadow-lg shadow-cropGreen-500/20 group-hover:shadow-cropOrange-500/30 transition-all"></div>
-              <div class="absolute inset-0 flex items-center justify-center text-white font-bold text-lg">CF</div>
-              <div class="absolute -inset-1 bg-gradient-to-r from-cropGreen-400/20 to-cropOrange-400/20 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity"></div>
-            </div>
-            <span class="text-2xl font-bold transition-all duration-300">
-              <span class="text-cropOrange-500 group-hover:text-cropOrange-600">Crop</span>
-              <span class="text-cropGreen-500 group-hover:text-cropGreen-600">fresh</span>
-            </span>
+            <!-- Logo image -->
+            <img src="assets/images/logo.png" alt="Cropfresh Logo" class="h-10 w-auto transition-all duration-300 group-hover:scale-110">
+            <!-- Logo text image -->
+            <img src="assets/images/Logo-text.png" alt="Cropfresh" class="h-8 w-auto transition-all duration-300">
           </a>
 
           <!-- Desktop Menu -->
